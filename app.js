@@ -1,7 +1,8 @@
 const loadMobiles = () => {
+    document.getElementById("mobile-container").innerHTML = "";
     const searchText = document.getElementById("search-box").value;
     const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
-    console.log(url);
+    // console.log(url);
     fetch(url)
         .then(res => res.json())
         .then(data => displayMobiles(data.data));
@@ -30,8 +31,25 @@ const displayMobiles = (mobiles) => {
 
 const details = (slug) => {
     const url = `https://openapi.programming-hero.com/api/phone/${slug}`;
-    console.log(url)
+    // console.log(url);
     fetch(url)
         .then(res => res.json())
-        .then(data => console.log(data))
+        .then(data => setDetails(data.data))
+}
+
+const setDetails = (info) => {
+    console.log(info);
+    document.getElementById('details-container').innerHTML = `
+        <div class="text-center">
+            <img src="${info.image}" alt="">
+            <p>Name: ${info.name}</p>
+            <p>Storage: ${info.mainFeatures.storage}</p>
+            <p>Display Size: ${info.mainFeatures.displaySize}</p>
+            <p>Chipset: ${info.mainFeatures.chipSet}</p>
+            <p>Memory: ${info.mainFeatures.memory}</p>
+            <p>Sensors: ${info.mainFeatures.sensors}</p>
+            <p>Release Date: ${info.releaseDate}</p>
+            <p>Other Features: ${info.others}</p>
+        </div>
+    `
 }
