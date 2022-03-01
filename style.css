@@ -1,11 +1,41 @@
+/* full document font */
 * {
     font-family: 'Poppins', sans-serif;
-    font-weight:900;
 }
+
+/* partial heading color */
 .heading-color {
     color: #C70039;
     font-weight: 600;
 }
+
+/* spinner */
 #spinner {
     display: none;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* not found warning */
+#warning-div{
+    display: none;
+}
+.details-container{
+    margin-top: 30px;
+}
+.bold-text{
+    font-weight: 800;
+}
+.mobile-image{
+    margin-left: auto;
+    margin-right: auto;
+}
+#mobile-background{
+    background-color: antiquewhite;
+}
+.card {
+    margin: 0 auto; 
+    float: none; 
+    margin-bottom: 10px;
+    padding: 10px;
 }

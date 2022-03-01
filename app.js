@@ -11,27 +11,32 @@ const loadMobiles = () => {
 }
 const displayMobiles = (mobiles) => {
     // const div = document.getElementById('search-button');
-    // console.log(mobiles);
-    if (mobiles) {
+    console.log(mobiles.length);
+    console.log(mobiles[0]);
+
+    if (mobiles[0]) {
         document.getElementById("spinner").style.display = "none";
+        document.getElementById("warning-div").style.display = "none";
+
     }
     else {
         document.getElementById("spinner").style.display = "block";
-        document.getElementById("spinner-div").innerHTML = `
-        <p class="text-center bg-danger">Not found</p>
-        `;
+        document.getElementById("warning-div").style.display = "block";
+        // document.getElementById("warning-div").innerHTML = `
+        // <h4 class="text-center text-white w-50 mx-auto p-2 m-2 bg-danger">No Mobiles Found !</h4>
+        // `;
     }
     for (const mobile of mobiles) {
         // console.log(mobile);
         const parent = document.getElementById('mobile-container');
         const div = document.createElement('div');
-        div.innerHTML = `<div class="card border p-5">
-        <div class="pro-pic ">
-            <img class="w-30" src="${mobile.image}" alt="">
+        div.innerHTML = `<div class="card card-transform align-items-center p-5">
+        <img class="w-30" src="${mobile.image}" alt="">
+        <div class="card-body">
+            <h4><span class ="bold-text">Phone Name:</span> ${mobile.phone_name}</h4>
+            <h5><span class ="bold-text">Brand:</span> ${mobile.brand}</h5>
         </div>
-        <h4>Phone Name: ${mobile.phone_name}</h4>
-        <h5>Brand: ${mobile.brand}</h5>
-        <p></p>
+        
         <div class="all-button">
             <button onclick="details('${mobile.slug}')" class="btn btn-success">Details</button>
         </div>
@@ -50,17 +55,35 @@ const details = (slug) => {
 
 const setDetails = (info) => {
     console.log(info);
-    document.getElementById('details-container').innerHTML = `
-        <div class="text-center">
-            <img src="${info.image}" alt="">
-            <p>Name: ${info.name}</p>
-            <p>Storage: ${info.mainFeatures.storage}</p>
-            <p>Display Size: ${info.mainFeatures.displaySize}</p>
-            <p>Chipset: ${info.mainFeatures.chipSet}</p>
-            <p>Memory: ${info.mainFeatures.memory}</p>
-            <p>Sensors: ${info.mainFeatures.sensors}</p>
-            <p>Release Date: ${info.releaseDate}</p>
-            <p>Other Features: ${info.others}</p>
+    document.getElementById('details-container').innerHTML =
+        `
+        <div id="mobile-background" class="card" style="width: 18rem;">
+            <img src="${info.image}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <p><span class = "bold-text">Name:</span> ${info.name}</p>
+                <p><span class = "bold-text">Storage:</span> ${info.mainFeatures.storage}</p>
+                <p><span class = "bold-text">Display Size:</span> ${info.mainFeatures.displaySize}</p>
+                <p><span class = "bold-text">Chipset:</span> ${info.mainFeatures.chipSet}</p>
+                <p><span class = "bold-text">Memory:</span> ${info.mainFeatures.memory}</p>
+                <p><span class = "bold-text">Sensors:</span> ${info.mainFeatures.sensors}</p>
+                <p><span class = "bold-text">Release Date:</span> ${info.releaseDate}</p>
+                <p><span class = "bold-text">Other Features:</span> ${info.others}</p>
+            </div>
         </div>
     `
+    // `
+    //     <div class="card mobile-background">
+    //         <img class="w-30 mx-auto mobile-image" src="${info.image}" alt=""><br><br>
+    //         <div class="card-body">
+    //             <p><span class = "bold-text">Name:</span> ${info.name}</p>
+    //             <p><span class = "bold-text">Storage:</span> ${info.mainFeatures.storage}</p>
+    //             <p><span class = "bold-text">Display Size:</span> ${info.mainFeatures.displaySize}</p>
+    //             <p><span class = "bold-text">Chipset:</span> ${info.mainFeatures.chipSet}</p>
+    //             <p><span class = "bold-text">Memory:</span> ${info.mainFeatures.memory}</p>
+    //             <p><span class = "bold-text">Sensors:</span> ${info.mainFeatures.sensors}</p>
+    //             <p><span class = "bold-text">Release Date:</span> ${info.releaseDate}</p>
+    //             <p><span class = "bold-text">Other Features:</span> ${info.others}</p>
+    //         </div>
+    //     </div>
+    // `
 }
