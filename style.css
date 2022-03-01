@@ -33,6 +33,7 @@
 #mobile-background{
     background-color: antiquewhite;
 }
+/* card design */
 .card {
     margin: 0 auto; 
     float: none; 
@@ -41,4 +42,8 @@
 }
 #others{
     font-size: 13px;
+}
+/* showall button */
+.showall-button{
+    display: none;
 }
