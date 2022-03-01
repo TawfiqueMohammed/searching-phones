@@ -1,5 +1,6 @@
 const loadMobiles = () => {
     document.getElementById("mobile-container").innerHTML = "";
+    document.getElementById('details-container').innerHTML = "";
     document.getElementById("spinner").style.display = "block";
     const searchText = document.getElementById("search-box").value;
     const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
@@ -11,8 +12,8 @@ const loadMobiles = () => {
 }
 const displayMobiles = (mobiles) => {
     // const div = document.getElementById('search-button');
-    console.log(mobiles.length);
-    console.log(mobiles[0]);
+    // console.log(mobiles.length);
+    // console.log(mobiles[0]);
 
     if (mobiles[0]) {
         document.getElementById("spinner").style.display = "none";
@@ -26,8 +27,10 @@ const displayMobiles = (mobiles) => {
         // <h4 class="text-center text-white w-50 mx-auto p-2 m-2 bg-danger">No Mobiles Found !</h4>
         // `;
     }
-    for (const mobile of mobiles) {
-        // console.log(mobile);
+    console.log(mobiles.length);
+    console.log(mobiles);
+    for (const mobile of mobiles.slice(0, 20)) {
+
         const parent = document.getElementById('mobile-container');
         const div = document.createElement('div');
         div.innerHTML = `<div class="card card-transform align-items-center p-5">
@@ -55,9 +58,10 @@ const details = (slug) => {
 
 const setDetails = (info) => {
     console.log(info);
+
     document.getElementById('details-container').innerHTML =
         `
-        <div id="mobile-background" class="card" style="width: 18rem;">
+        <div id="mobile-background" class="card" style="width: 20rem;">
             <img src="${info.image}" class="card-img-top" alt="...">
             <div class="card-body">
                 <p><span class = "bold-text">Name:</span> ${info.name}</p>
@@ -67,23 +71,16 @@ const setDetails = (info) => {
                 <p><span class = "bold-text">Memory:</span> ${info.mainFeatures.memory}</p>
                 <p><span class = "bold-text">Sensors:</span> ${info.mainFeatures.sensors}</p>
                 <p><span class = "bold-text">Release Date:</span> ${info.releaseDate}</p>
-                <p><span class = "bold-text">Other Features:</span> ${info.others}</p>
+                <span class = "bold-text">Other Features:</span>
+                <div id="others">
+                    <p><span class = "bold-text">Bluetooth:</span> ${info.others.Bluetooth}</p>
+                    <p><span class = "bold-text">GPS:</span> ${info.others.GPS}</p>
+                    <p><span class = "bold-text">NFC:</span> ${info.others.NFC}</p>
+                    <p><span class = "bold-text">Radio:</span> ${info.others.Radio}</p>
+                    <p><span class = "bold-text">USB:</span> ${info.others.USB}</p>
+                    <p><span class = "bold-text">WLAN:</span> ${info.others.WLAN}</p>
+                </div>
             </div>
         </div>
     `
-    // `
-    //     <div class="card mobile-background">
-    //         <img class="w-30 mx-auto mobile-image" src="${info.image}" alt=""><br><br>
-    //         <div class="card-body">
-    //             <p><span class = "bold-text">Name:</span> ${info.name}</p>
-    //             <p><span class = "bold-text">Storage:</span> ${info.mainFeatures.storage}</p>
-    //             <p><span class = "bold-text">Display Size:</span> ${info.mainFeatures.displaySize}</p>
-    //             <p><span class = "bold-text">Chipset:</span> ${info.mainFeatures.chipSet}</p>
-    //             <p><span class = "bold-text">Memory:</span> ${info.mainFeatures.memory}</p>
-    //             <p><span class = "bold-text">Sensors:</span> ${info.mainFeatures.sensors}</p>
-    //             <p><span class = "bold-text">Release Date:</span> ${info.releaseDate}</p>
-    //             <p><span class = "bold-text">Other Features:</span> ${info.others}</p>
-    //         </div>
-    //     </div>
-    // `
 }
