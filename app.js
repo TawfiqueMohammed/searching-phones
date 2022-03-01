@@ -1,15 +1,26 @@
 const loadMobiles = () => {
     document.getElementById("mobile-container").innerHTML = "";
+    document.getElementById("spinner").style.display = "block";
     const searchText = document.getElementById("search-box").value;
     const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
     // console.log(url);
     fetch(url)
         .then(res => res.json())
         .then(data => displayMobiles(data.data));
+
 }
 const displayMobiles = (mobiles) => {
     // const div = document.getElementById('search-button');
     // console.log(mobiles);
+    if (mobiles) {
+        document.getElementById("spinner").style.display = "none";
+    }
+    else {
+        document.getElementById("spinner").style.display = "block";
+        document.getElementById("spinner-div").innerHTML = `
+        <p class="text-center bg-danger">Not found</p>
+        `;
+    }
     for (const mobile of mobiles) {
         // console.log(mobile);
         const parent = document.getElementById('mobile-container');
