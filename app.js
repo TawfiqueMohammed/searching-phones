@@ -118,6 +118,7 @@ const details = (slug) => {
         .then(data => setDetails(data.data))
 }
 
+// setting details of single mobileid
 const setDetails = (info) => {
     console.log(info.releaseDate);
 
